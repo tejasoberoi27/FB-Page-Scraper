@@ -62,7 +62,7 @@ def sortByComments(jsonDict):
 				second element as likes and third element as number of comments 
 
 	"""
-	sortedComments = sorted(jsonDict.items(), key = lambda x: x[1][2], reverse = True)
+	sortedComments = sorted(jsonDict.items(), key = lambda x: x[1][1], reverse = True)
 	return sortedComments
 
 def savePostsToFile(token,pageId,num):
@@ -110,12 +110,12 @@ def saveSortedLikesToFile(feedData):
 	"""
 	sortedDataLikes = sortByLikes(feedData)
 	print("Sorted by Likes")
-	with open("SortedByLikes.txt","w",encoding='utf-8') as f:
-		f.write("#Likes \t Story \n")
-		for i in sortedDataLikes:
-			likes = i[1][1]
-			story = i[1][0]
-			f.write("%d \t %s \n" % (likes,story))
+	f = open("SortedByLikes.txt","w",encoding='utf-8')	
+	f.write("#Likes \t Story \n")
+	for i in sortedDataLikes:
+		likes = i[1][1]
+		story = i[1][0]
+		f.write("%d \t %s \n" % (likes,story))
 
 def saveSortedCommentsToFile(feedData):
 	"""Writes posts sorted by comments to a file SortedByComments.txt in human readable format
